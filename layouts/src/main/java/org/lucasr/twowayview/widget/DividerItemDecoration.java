@@ -40,6 +40,7 @@ public class DividerItemDecoration extends ItemDecoration {
 
         a.recycle();
 
+
         mItemSpacing = createSpacing(mVerticalDivider, mHorizontalDivider);
     }
 

@@ -14,7 +14,10 @@
   ~ limitations under the License.
   -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="#ffff4444"/>
 
     <item android:state_activated="true"
           android:drawable="@color/item_activated_color"/>
@@ -24,4 +27,4 @@
 
     <item android:drawable="@color/item_default_color"/>
 
-</selector>
+</shape>

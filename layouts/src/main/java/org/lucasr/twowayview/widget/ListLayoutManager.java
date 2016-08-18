@@ -17,13 +17,21 @@
 package org.lucasr.twowayview.widget;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Recycler;
 import android.support.v7.widget.RecyclerView.State;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
 
+import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.widget.Lanes.LaneInfo;
 
 public class ListLayoutManager extends BaseLayoutManager {
+
+    int x = 0;
+    int y = 0;
+
     private static final String LOGTAG = "ListLayoutManager";
 
     public ListLayoutManager(Context context, AttributeSet attrs) {
@@ -52,4 +60,41 @@ public class ListLayoutManager extends BaseLayoutManager {
     void moveLayoutToPosition(int position, int offset, Recycler recycler, State state) {
         getLanes().reset(offset);
     }
+
+
+    @Override
+    protected void layoutChild(View child, Direction direction) {
+        super.layoutChild(child, direction);
+
+       // for (int i = 0 ; i<getChildCount(); i++){
+          //  View children = getChildAt(i);
+        /*layoutDecorated(child, x, y, x+ 100, y+ 100);
+
+        x += 100;
+
+        if (x> getWidth()){
+            x = 0;
+        }
+
+            y+=50;
+
+        if (y>getHeight()){
+            y = 0;
+        }*/
+
+       // }
+
+
+        Log.d("TAGS", "child call");
+    }
+
+
+
+    @Override
+    public void onScrollStateChanged(int state) {
+        super.onScrollStateChanged(state);
+    }
+
+
+
 }

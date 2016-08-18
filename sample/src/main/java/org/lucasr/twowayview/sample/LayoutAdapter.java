@@ -18,6 +18,7 @@ package org.lucasr.twowayview.sample;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,9 @@ import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SimpleViewHolder> {
+import static android.support.v7.widget.RecyclerView.*;
+
+public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SimpleViewHolder>{
     private static final int COUNT = 100;
 
     private final Context mContext;
@@ -40,7 +43,7 @@ public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SimpleView
     private final int mLayoutId;
     private int mCurrentItemId = 0;
 
-    public static class SimpleViewHolder extends RecyclerView.ViewHolder {
+    public static class SimpleViewHolder extends ViewHolder {
         public final TextView title;
 
         public SimpleViewHolder(View view) {

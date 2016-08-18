@@ -18,6 +18,12 @@ package org.lucasr.twowayview.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Shader;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -34,6 +40,7 @@ public class TwoWayView extends RecyclerView {
             Context.class, AttributeSet.class};
 
     final Object[] sConstructorArgs = new Object[2];
+    private final Paint mPaint;
 
     public TwoWayView(Context context) {
         this(context, null);
@@ -55,6 +62,13 @@ public class TwoWayView extends RecyclerView {
         }
 
         a.recycle();
+
+        mPaint = new Paint();
+        mPaint.setColor(Color.GREEN);
+        mPaint.setStrokeWidth(3f);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setShader(new LinearGradient(0, 0, getWidth(), 20, Color.GRAY, Color.GRAY, Shader.TileMode.CLAMP));
+
     }
 
     private void loadLayoutManagerFromName(Context context, AttributeSet attrs, String name) {
@@ -111,5 +125,19 @@ public class TwoWayView extends RecyclerView {
     public int getLastVisiblePosition() {
         TwoWayLayoutManager layout = (TwoWayLayoutManager) getLayoutManager();
         return layout.getLastVisiblePosition();
+    }
+
+     @Override
+    public void draw(Canvas canvas) {
+        Path path = new Path();
+
+        android.graphics.Point controlPoint = new android.graphics.Point(getWidth()/2, 300);
+        android.graphics.Point endPoint = new android.graphics.Point(getWidth(), 0);
+        path.moveTo(0, 0);
+        path.quadTo(controlPoint.x, controlPoint.y, endPoint.x, endPoint.y);
+
+        canvas.drawPath(path, mPaint);
+
+         super.draw(canvas);
     }
 }
