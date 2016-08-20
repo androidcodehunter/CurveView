@@ -132,7 +132,7 @@ public abstract class BaseLayoutManager extends TwoWayLayoutManager {
         MOVE
     }
 
-    private Lanes mLanes;
+    protected Lanes mLanes;
     private Lanes mLanesToRestore;
 
     private ItemEntries mItemEntries;

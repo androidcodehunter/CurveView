@@ -33,6 +33,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -105,7 +106,7 @@ public class LayoutFragment extends Fragment {
 
         final Activity activity = getActivity();
 
-        childHalfPx = (int) convertDpToPixel(24,activity);
+        childHalfPx = (int) convertDpToPixel(48,activity);
 
         mToast = Toast.makeText(activity, "", Toast.LENGTH_SHORT);
         mToast.setGravity(Gravity.CENTER, 0, 0);
@@ -158,7 +159,7 @@ public class LayoutFragment extends Fragment {
 
                 for (int i = mRecyclerView.getFirstVisiblePosition(); i<= mRecyclerView.getLastVisiblePosition(); i++){
 
-                    TextView view = (TextView) recyclerView.getChildAt(i - mRecyclerView.getFirstVisiblePosition());
+                    FrameLayout view = (FrameLayout) recyclerView.getChildAt(i - mRecyclerView.getFirstVisiblePosition());
 
                     int x=view.getLeft(),y;
 
@@ -169,8 +170,13 @@ public class LayoutFragment extends Fragment {
                     //if (x>=1400)
                     Log.d("View",((TextView)view.findViewById(R.id.title)).getText().toString()+" Left : "+x + " width "+ mWidth + " valueOf Y: "+ y+" Px Half : "+childHalfPx +" width "+view.getMeasuredWidth());
 
-                    //view.layout(x-childHalfPx, y-childHalfPx, x + view.getMeasuredWidth()-childHalfPx, y + view.getMeasuredWidth()-childHalfPx);
-                    view.layout(x-15, y, x + view.getMeasuredWidth()-15, y + view.getMeasuredHeight());
+
+                    int half = view.getMeasuredWidth()/2;
+
+                    y = y - half;
+
+                    view.layout(x, y, x + view.getMeasuredWidth(), y + view.getMeasuredWidth());
+                 //   view.layout(x-childHalfPx/2, y-childHalfPx/2, x + childHalfPx/2, y + childHalfPx/2);
                     //y += 50;
                 }
 
@@ -190,7 +196,14 @@ public class LayoutFragment extends Fragment {
     double getY(Point startPoint, Point controlPoint, Point endPoint, double t, int extraSpace){
 
         double result;
-        t = t / (double) (mWidth - extraSpace);
+
+        //if (t>(mWidth/2)){
+            //t+=200;
+
+
+        t = t / (double) (mWidth);
+
+
         result = Math.pow(1.0 - t, 2.0) * startPoint.y + 2.0 * (1.0-t)* t * controlPoint.y  + Math.pow(t, 2.0) * endPoint.y;
         return result;
     }

@@ -17,6 +17,7 @@
 package org.lucasr.twowayview.widget;
 
 import android.graphics.Rect;
+import android.util.Log;
 
 import org.lucasr.twowayview.TwoWayLayoutManager.Direction;
 import org.lucasr.twowayview.TwoWayLayoutManager.Orientation;
@@ -182,6 +183,8 @@ class Lanes {
             }
         }
 
+        Log.d("Tag_L_Push","Left Lens push "+laneRect.left);
+
         invalidateEdges();
 
         return delta;
@@ -203,6 +206,8 @@ class Lanes {
             }
         }
 
+
+        Log.d("Tag_L_POP","Left Lens pop "+laneRect.left);
         invalidateEdges();
     }
 

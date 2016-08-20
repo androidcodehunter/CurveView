@@ -27,9 +27,14 @@ import android.graphics.Shader;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.TwoWayLayoutManager.Orientation;
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Constructor;
 
@@ -131,6 +136,13 @@ public class TwoWayView extends RecyclerView {
     public void draw(Canvas canvas) {
         Path path = new Path();
 
+         /*FrameLayout itemView = (FrameLayout) getChildAt(0);
+
+         TextView childItem = (TextView) itemView.getChildAt(0);
+
+         int width = childItem.getMeasuredWidth();
+         int height = childItem.getMeasuredHeight();
+*/
         android.graphics.Point controlPoint = new android.graphics.Point(getWidth()/2, 300);
         android.graphics.Point endPoint = new android.graphics.Point(getWidth(), 0);
         path.moveTo(0, 0);

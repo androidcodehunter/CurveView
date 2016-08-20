@@ -19,6 +19,7 @@ package org.lucasr.twowayview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PointF;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -682,6 +683,12 @@ public abstract class TwoWayLayoutManager extends LayoutManager {
         final MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
         super.layoutDecorated(child, left + lp.leftMargin, top + lp.topMargin,
                 right - lp.rightMargin, bottom - lp.bottomMargin);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1 && right > 0 ) {
+            //child.animate().translationX(-101.5f).setDuration(0);
+            //child.animate().translationY(-84).setDuration(0);
+        }
     }
 
     @Override
